@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  sql_server:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      ACCEPT_EULA: Y
+      SA_PASSWORD: "{TuPassword}"
+    ports:
+      - "1433:1433"
+    networks:
+      - my-network
+
+networks:
+  my-network:
