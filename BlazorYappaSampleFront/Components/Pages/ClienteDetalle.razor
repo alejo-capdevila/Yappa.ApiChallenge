@@ -1,0 +1,80 @@
+﻿@page "/clientes/detalle/{id:int}"
+@attribute [StreamRendering]
+@using System.Net.Http.Json
+@using System.ComponentModel.DataAnnotations
+@inject HttpClient HttpClient
+@inject NavigationManager NavigationManager
+
+<h3>Detalle del Cliente</h3>
+
+@if (cliente == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <form @onsubmit="GuardarCambios">
+        <div>
+            <label for="nombres">Nombres:</label>
+            <input id="nombres" type="text" @bind="cliente.Nombres" />
+        </div>
+        <div>
+            <label for="apellidos">Apellidos:</label>
+            <input id="apellidos" type="text" @bind="cliente.Apellidos" />
+        </div>
+        <div>
+            <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+            <input id="fechaNacimiento" type="date" @bind="cliente.FechaNacimiento" />
+        </div>
+        <div>
+            <label for="cuit">CUIT:</label>
+            <input id="cuit" type="text" @bind="cliente.CUIT" />
+        </div>
+        <div>
+            <label for="domicilio">Domicilio:</label>
+            <input id="domicilio" type="text" @bind="cliente.Domicilio" />
+        </div>
+        <div>
+            <label for="telefonoCelular">Teléfono Celular:</label>
+            <input id="telefonoCelular" type="text" @bind="cliente.TelefonoCelular" />
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input id="email" type="email" @bind="cliente.Email" />
+        </div>
+
+        <button type="submit">Guardar cambios</button>
+        <button type="button" @onclick="Cancelar">Cancelar</button>
+    </form>
+}
+
+
+@code {
+    private Clientes.ClienteDTO cliente;
+
+    [Parameter] public int Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CargarCliente();
+    }
+
+    private async Task CargarCliente()
+    {
+        cliente = await HttpClient.GetFromJsonAsync<Clientes.ClienteDTO>($"http://localhost:5024/api/v1/Cliente/{Id}");
+    }
+
+    private async Task GuardarCambios()
+    {
+        // Aquí puedes enviar el cliente modificado al servidor para que se actualice en la base de datos
+        // Por simplicidad, este ejemplo no incluye la lógica para enviar los cambios al servidor
+        // Simplemente redireccionaremos a la lista de clientes después de guardar
+        NavigationManager.NavigateTo("/clientes");
+    }
+
+    private void Cancelar()
+    {
+        NavigationManager.NavigateTo("/clientes");
+    }
+
+}

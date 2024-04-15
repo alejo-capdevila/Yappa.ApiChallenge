@@ -7,7 +7,7 @@ using Yappa.Services;
 
 namespace Yappa.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class ClienteController : ControllerBase
     {

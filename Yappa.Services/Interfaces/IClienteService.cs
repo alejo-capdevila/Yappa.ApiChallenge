@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-using Yappa.Models;
+﻿using Yappa.Models;
 
 namespace Yappa.Services
 {

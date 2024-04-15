@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Yappa.Models\Yappa.Models.csproj" />
     <ProjectReference Include="..\Yappa.Repositories\Yappa.Repositories.csproj" />
   </ItemGroup>

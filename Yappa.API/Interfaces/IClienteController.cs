@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Yappa.Models;
 
-namespace Yappa.API.Controllers
+namespace Yappa.API.Interfaces
 {
     public interface IClienteController
     {
